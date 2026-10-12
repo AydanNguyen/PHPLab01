@@ -1,6 +1,7 @@
 <?php
-$productName = "Wireless Keyboard";
-$price = 850000;
+$productName = "Salt Coffee";
+$price = 45000;
 $rawQuantity = "3";
-$userStatus = "ACTIVE";
-$inStock = true;
+$memberStatus = "MEMBER";
+$productAvailable = true;
+$isActiveCustomer = true;

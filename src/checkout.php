@@ -1,18 +1,20 @@
 <?php
+#cast string to int
 $quantity = (int) $rawQuantity;
 
 $subtotal = $price * $quantity;
-$isActiveMember = $userStatus === "ACTIVE";
-$isDiscountEligible = $isActiveMember && $subtotal >= 1000000;
-$discount = $isDiscountEligible ? $subtotal * MEMBER_DISCOUNT_RATE : 0;
+
+$isMember = $memberStatus === "MEMBER";
+$isDiscountEligible = $isMember && $subtotal >= MEMBER_MIN;
+
+$discount = $isDiscountEligible
+    ? $subtotal * MEMBER_DISCOUNT_RATE
+    : 0;
 
 $afterDiscount = $subtotal - $discount;
-$isFreeShipping = $afterDiscount >= FREE_SHIPPING_MIN;
-$shipping = $isFreeShipping ? 0 : SHIPPING_FEE;
+$packaging = $quantity * PACKAGING_FEE_PER_ITEM;
+$serviceFee = $afterDiscount * SERVICE_RATE;
+$total = $afterDiscount + $packaging + $serviceFee;
 
-$beforeTax = $afterDiscount + $shipping;
-$tax = $beforeTax * TAX_RATE;
-$total = $beforeTax + $tax;
-
-$hasValidQuantity = $quantity > 0;
-$canCheckout = $inStock && $hasValidQuantity && $isActiveMember;
+$hasValidQuantity = $quantity > 0 && $productAvailable == true;
+$canCheckout = $hasValidQuantity && $isActiveCustomer;
