@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>OrderReceipt</title>
+    <title>Order Receipt</title>
 </head>
 <body>
-    <h1>OrderReceipt</h1>
+    <h1>Order Receipt</h1>
     <p>Product: <?= $productName ?></p>
     <p>Price: <?= $price ?></p>
     <p>Quantity: <?= $quantity ?></p>
