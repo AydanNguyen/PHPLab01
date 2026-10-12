@@ -1,5 +1,4 @@
 <?php
-#cast string to int
 $quantity = (int) $rawQuantity;
 
 $subtotal = $price * $quantity;
